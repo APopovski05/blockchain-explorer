@@ -1,0 +1,20 @@
+# ===== OS / IDE =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ===== Backend (Spring Boot) =====
+Backend/target/
+Backend/*.log
+
+# ===== Frontend (Angular) =====
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+Frontend/.cache/
+Frontend/*.log
+
+# ===== Env / Secrets =====
+**/.env
+**/application-local.properties

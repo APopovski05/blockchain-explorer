@@ -1,0 +1,35 @@
+<div class="page-header">
+  <div>
+    <h1>Watchlist</h1>
+    <p class="muted">Track smart contract addresses locally (saved in your browser).</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="form-row">
+    <input
+      class="input"
+      [(ngModel)]="newAddress"
+      placeholder="Enter contract address (e.g. 0x...)"
+    />
+    <button class="btn" (click)="add()">Add</button>
+    <button class="btn secondary" (click)="watchlist.clear()" [disabled]="watchlist.getAll().length === 0">
+      Clear
+    </button>
+  </div>
+
+  <div *ngIf="error" class="error-text">{{ error }}</div>
+</div>
+
+<div class="card" *ngIf="watchlist.getAll().length === 0">
+  No watched contracts yet.
+</div>
+
+<div class="card" *ngIf="watchlist.getAll().length > 0">
+  <ul class="list">
+    <li *ngFor="let addr of watchlist.getAll()">
+      <span class="mono break">{{ addr }}</span>
+      <button class="link" (click)="remove(addr)">Remove</button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,82 @@
+<div class="page-header">
+  <div>
+    <h1>Block Details</h1>
+    <p class="muted" *ngIf="block">Block #{{ block.blockNumber }}</p>
+  </div>
+  <a class="btn" routerLink="/blocks">← Back</a>
+</div>
+
+<div *ngIf="loading" class="card">Loading block details...</div>
+
+<div *ngIf="!loading && error" class="card error">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && !error && block" class="card">
+  <div class="rows">
+    <div class="row">
+      <div class="label">Block #</div>
+      <div class="value">{{ block.blockNumber }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Hash</div>
+      <div class="value mono break">{{ block.blockHash }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Miner</div>
+      <div class="value">{{ block.miner }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Tx Count</div>
+      <div class="value">{{ block.transactionCount }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Timestamp</div>
+      <div class="value mono">{{ block.timestamp }}</div>
+    </div>
+  </div>
+
+  <details class="json">
+    <summary>Raw JSON</summary>
+    <pre>{{ block | json }}</pre>
+  </details>
+</div>
+
+<h2 class="section-title">Transactions</h2>
+
+<div *ngIf="txLoading" class="card">Loading transactions...</div>
+
+<div *ngIf="!txLoading && txError" class="card error">
+  {{ txError }}
+</div>
+
+<div *ngIf="!txLoading && !txError && transactions.length === 0" class="card">
+  No transactions found for this block.
+</div>
+
+<div *ngIf="!txLoading && !txError && transactions.length > 0" class="card">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Tx Hash</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tx of transactions">
+          <td class="mono break">{{ tx.hash }}</td>
+          <td class="mono break">{{ tx.fromAddress ?? tx.from }}</td>
+          <td class="mono break">{{ tx.toAddress ?? tx.to }}</td>
+          <td>{{ tx.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

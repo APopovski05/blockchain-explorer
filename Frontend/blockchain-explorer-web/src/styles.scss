@@ -1,0 +1,291 @@
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: radial-gradient(1200px 600px at 20% -10%, #14234a 0%, #0b1220 55%, #070b14 100%);
+  color: #e5e7eb;
+}
+
+/* ========= LAYOUT ========= */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* ========= TYPOGRAPHY ========= */
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 850;
+  letter-spacing: .3px;
+}
+
+p { margin: 0; }
+
+.muted {
+  color: #aab3c2;
+  margin: 0;
+}
+
+/* ========= CARDS ========= */
+.card {
+  background: #111a2e;                 /* dark card */
+  border: 1px solid #1e2a4a;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+
+.card.error {
+  border-color: #7f1d1d;
+  background: linear-gradient(180deg, #1a0f15 0%, #12080d 100%);
+  color: #fecaca;
+}
+
+/* ========= BUTTONS ========= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: #3b82f6; /* royal blue */
+  color: #ffffff;
+  font-weight: 750;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, transform .05s ease, box-shadow .15s ease;
+}
+
+.btn:hover {
+  background: #2563eb;
+  box-shadow: 0 8px 18px rgba(59,130,246,.18);
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn.secondary {
+  background: #121a2d;
+  color: #e5e7eb;
+  border-color: #2a385f;
+}
+
+.btn.secondary:hover {
+  background: #18223a;
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+}
+
+.btn:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+/* ========= FORMS (INPUT / SELECT) ========= */
+.input {
+  background: #0b1220;
+  border: 1px solid #1e2a4a;
+  color: #f3f4f6;              /* ✅ stronger text */
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-width: 200px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.input::placeholder { color: #7b879a; }
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.25); /* ✅ visible focus ring */
+}
+
+.input:disabled {
+  color: #aab3c2;              /* ✅ readable disabled */
+  opacity: .85;
+}
+
+/* Make select dropdown arrow visible in some browsers */
+select.input {
+  appearance: auto;
+}
+
+/* ========= ERROR TEXT ========= */
+.error-text {
+  margin-top: 10px;
+  color: #fecaca;
+  font-weight: 650;
+}
+
+/* ========= TABLES ========= */
+.table-wrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.table th, .table td {
+  padding: 12px 12px;
+  border-bottom: 1px solid #1e2a4a;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Header slightly muted */
+.table thead th {
+  font-size: .85rem;
+  color: #aab3c2;
+  font-weight: 850;
+}
+
+.table tbody td {
+  color: #e5e7eb;                      /* readable */
+}
+
+.table tbody tr:hover {
+  background: rgba(255,255,255,.04);
+}
+
+
+/* ===== LIGHT TABLE FIX (Blocks page) ===== */
+.card.light,
+.card.light table,
+.card.light td,
+.card.light th {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+/* Ensure headers are readable */
+.card.light th {
+  color: #334155;
+}
+
+
+/* ========= DETAIL ROWS (Block/Tx details) ========= */
+.rows { display: grid; gap: 10px; }
+
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #1e2a4a;
+}
+
+.row:last-child { border-bottom: none; }
+
+.label {
+  font-weight: 850;
+  color: #aab3c2;
+}
+
+.value { color: #e5e7eb; }
+
+/* ========= UTIL ========= */
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.break { word-break: break-all; }
+
+/* ========= LINKS ========= */
+a {
+  color: #7db3ff; /* brighter than before */
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(125,179,255,.45);
+}
+
+a:hover {
+  color: #a6ccff;
+  text-decoration-color: rgba(166,204,255,.75);
+}
+
+/* ========= OPTIONAL: STATUS BADGES (use class on <td>) ========= */
+.status-success { color: #22c55e; font-weight: 850; }
+.status-pending { color: #f59e0b; font-weight: 850; }
+.status-failed  { color: #ef4444; font-weight: 850; }
+
+/* ===== RAW JSON / CODE BLOCK FIX ===== */
+pre, code {
+  background: #0b1220;                 /* dark code */
+  color: #e5e7eb;                      /* readable */
+  border: 1px solid #1e2a4a;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+
+/* If Raw JSON is inside a card */
+.card pre {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+
+/* ===== LINKS ON LIGHT BACKGROUND ===== */
+.card.light a {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.card.light a:hover {
+  color: #1d4ed8;
+}
+
+/* ========= FORCE DARK CARDS (override any component white styles) ========= */
+.card {
+  background: #111a2e !important;
+  color: #e5e7eb !important;
+  border: 1px solid #1e2a4a !important;
+}
+
+.card * {
+  color: inherit;
+}
+
+/* ========= FORCE DARK TABLES INSIDE CARDS ========= */
+.card .table,
+.card table {
+  background: transparent !important;
+}
+
+.card .table th,
+.card .table td,
+.card table th,
+.card table td {
+  background: transparent !important;
+  color: #e5e7eb !important;
+  border-bottom: 1px solid #1e2a4a !important;
+}
+
+.card .table thead th,
+.card table thead th {
+  color: #aab3c2 !important;
+}
+
+/* hover */
+.card .table tbody tr:hover,
+.card table tbody tr:hover {
+  background: rgba(255,255,255,.04) !important;
+}

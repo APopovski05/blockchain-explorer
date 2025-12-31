@@ -1,0 +1,33 @@
+<div class="page-header">
+  <div>
+    <h1>Transaction Details</h1>
+    <p class="muted" *ngIf="tx">{{ tx.txHash }}</p>
+  </div>
+  <a class="btn" routerLink="/transactions">← Back</a>
+</div>
+
+<div *ngIf="loading" class="card">Loading transaction...</div>
+
+<div *ngIf="!loading && error" class="card error">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && !error && tx" class="card">
+  <div class="rows">
+    <div class="row"><div class="label">Tx Hash</div><div class="value mono break">{{ tx.txHash }}</div></div>
+    <div class="row"><div class="label">Block #</div><div class="value">{{ tx.blockNumber }}</div></div>
+    <div class="row"><div class="label">From</div><div class="value mono break">{{ tx.fromAddress }}</div></div>
+    <div class="row"><div class="label">To</div><div class="value mono break">{{ tx.toAddress }}</div></div>
+    <div class="row"><div class="label">Amount</div><div class="value">{{ tx.amount }}</div></div>
+    <div class="row"><div class="label">Status</div><div class="value">{{ tx.status }}</div></div>
+    <div class="row"><div class="label">Timestamp</div><div class="value mono">{{ tx.timestamp }}</div></div>
+    <div class="row"><div class="label">Gas Used</div><div class="value">{{ tx.gasUsed }}</div></div>
+    <div class="row"><div class="label">Gas Price</div><div class="value">{{ tx.gasPrice }}</div></div>
+    <div class="row"><div class="label">Tx Index</div><div class="value">{{ tx.transactionIndex }}</div></div>
+  </div>
+
+  <details class="json">
+    <summary>Raw JSON</summary>
+    <pre>{{ tx | json }}</pre>
+  </details>
+</div>

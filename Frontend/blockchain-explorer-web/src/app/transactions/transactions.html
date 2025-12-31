@@ -1,0 +1,84 @@
+<div class="page-header">
+  <div>
+    <h1>Transactions</h1>
+    <p class="muted">Search by hash, block number, or address.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="form-row">
+    <select class="input" [(ngModel)]="mode">
+      <option value="all">All</option>
+      <option value="hash">Tx Hash</option>
+      <option value="block">Block #</option>
+      <option value="address">Address</option>
+    </select>
+
+    <input
+      class="input"
+      [(ngModel)]="query"
+      [disabled]="mode === 'all'"
+      [placeholder]="
+        mode === 'hash' ? 'Enter tx hash' :
+        mode === 'block' ? 'Enter block number' :
+        mode === 'address' ? 'Enter address' : ''
+      "
+    />
+
+    <button class="btn" (click)="search()">Search</button>
+    <button class="btn secondary" (click)="reset()">Reset</button>
+
+
+  </div>
+
+  <div *ngIf="error" class="error-text">{{ error }}</div>
+</div>
+
+<div *ngIf="loading" class="card">Loading...</div>
+
+<div *ngIf="!loading && results.length === 0 && !error" class="card">
+  No transactions found.
+</div>
+
+<div *ngIf="!loading && results.length > 0" class="card">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+  <tr>
+    <th>Tx Hash</th>
+    <th>Block #</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Timestamp</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr *ngFor="let tx of results">
+    <td class="mono break">
+  <a [routerLink]="['/transactions', tx.txHash]">
+    {{ tx.txHash }}
+  </a>
+</td>
+
+    <td>{{ tx.blockNumber }}</td>
+    <td class="mono break">{{ tx.fromAddress }}</td>
+    <td class="mono break">{{ tx.toAddress }}</td>
+    <td>{{ tx.amount }}</td>
+    <td
+  [class.status-success]="tx.status === 'SUCCESS'"
+  [class.status-pending]="tx.status === 'PENDING'"
+  [class.status-failed]="tx.status === 'FAILED' || tx.status === 'ERROR'"
+>
+  {{ tx.status }}
+</td>
+
+    <td class="mono break">{{ tx.timestamp }}</td>
+  </tr>
+</tbody>
+
+    </table>
+  </div>
+</div>

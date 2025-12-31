@@ -1,0 +1,17 @@
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" routerLink="/">Blockchain Explorer</a>
+
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/blocks" routerLinkActive="active">Blocks</a>
+      <a routerLink="/transactions" routerLinkActive="active">Transactions</a>
+     
+      <a routerLink="/watchlist" routerLinkActive="active">Watchlist</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>

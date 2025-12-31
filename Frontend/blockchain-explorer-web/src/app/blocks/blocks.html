@@ -1,0 +1,42 @@
+<div class="page-header">
+  <div>
+    <h1>Blocks</h1>
+    <p class="muted">Browse recent blocks from your API.</p>
+  </div>
+</div>
+
+<div *ngIf="loading" class="card">Loading blocks...</div>
+
+<div *ngIf="!loading && error" class="card error">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && !error" class="card">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Block #</th>
+          <th>Hash</th>
+          <th>Miner</th>
+          <th>Tx Count</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let block of blocks">
+          <td>
+            <a class="mono" [routerLink]="['/blocks', block.blockNumber]">
+              {{ block.blockNumber }}
+            </a>
+          </td>
+          <td class="mono">{{ block.blockHash }}</td>
+          <td>{{ block.miner }}</td>
+          <td>{{ block.transactionCount }}</td>
+          <td class="mono small">{{ block.timestamp }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

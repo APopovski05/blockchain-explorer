@@ -1,0 +1,66 @@
+<div class="page-header">
+  <div>
+    <h1 style="margin:0;">Dashboard</h1>
+    <p class="muted">Quick overview of the latest block.</p>
+  </div>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn secondary" routerLink="/blocks">View Blocks</a>
+    <a class="btn secondary" routerLink="/transactions">Search Transactions</a>
+  </div>
+</div>
+
+<div *ngIf="loading" class="card">Loading latest block...</div>
+
+<div *ngIf="!loading && error" class="card error">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && !error && latestBlock" class="card">
+  <div class="page-header" style="margin-bottom:10px;">
+    <h2 style="margin:0;">Latest Block</h2>
+    <a class="btn" [routerLink]="['/blocks', latestBlock.blockNumber]">Open Details →</a>
+  </div>
+
+  <div class="rows">
+    <div class="row">
+      <div class="label">Block #</div>
+      <div class="value">{{ latestBlock.blockNumber }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Hash</div>
+      <div class="value mono break">{{ latestBlock.blockHash }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Miner</div>
+      <div class="value mono break">{{ latestBlock.miner }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Tx Count</div>
+      <div class="value">{{ latestBlock.transactionCount }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Timestamp</div>
+      <div class="value mono">{{ latestBlock.timestamp }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Gas Used</div>
+      <div class="value">{{ latestBlock.gasUsed }}</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Gas Limit</div>
+      <div class="value">{{ latestBlock.gasLimit }}</div>
+    </div>
+  </div>
+
+  <details style="margin-top:14px;">
+    <summary class="link">Raw JSON</summary>
+    <pre class="card" style="margin-top:10px; background:#f3f4f6; overflow:auto;">{{ latestBlock | json }}</pre>
+  </details>
+</div>
